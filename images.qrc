@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>resources/help.jpg</file>
+        <file>resources/icono.png</file>
+        <file>resources/ws_creations.png</file>
+    </qresource>
+</RCC>
