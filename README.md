@@ -1,17 +1,18 @@
 AddRemTag
 =========
 
-<h3>SourceCode - Read ME</h3>
+<h3>Read Me</h3>
 <b>AddRemTag Version 1.1</b><br>
 This is the source code of the application which is based on <a href=http://qt-project.org/ >Qt Framework</a><br>
 
-To build the source files, type the following commands in the terminal
+To build the source files, type the following commands in the terminal :
+<pre>
 $ make clean
 $ qmake -config release
 $ make
+</pre>
 
 Homepage : <a href=https://code.google.com/p/addremtag >https://code.google.com/p/addremtag</a>
-Download the application here : 
 
 <b>Author :</b> Sourabh Deokar	
 <b>EMail :</b> sourabhdeokar[AT]gmail[DOT]com
@@ -31,8 +32,6 @@ Version <b>1.1</b><br>
 
 In case you face any difficulties OR Found any bugs OR Got some good ideas<br>
 mail me @ <b><a href="mailto:sourabhdeokar@gmail.com?Subject=Comment%20AddRemTag@github">sourabhdeokar@gmail.com</a></b>
-
-<b>Hope u find it useful !!!</b>
 
 
 <h6>	
