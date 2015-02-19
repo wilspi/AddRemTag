@@ -13,15 +13,14 @@ $ make
 </pre>
 
 Homepage : <a href=https://code.google.com/p/addremtag >https://code.google.com/p/addremtag</a>
+Feel free to report issues or suggest ideas<br>
 
 
 -----------------------------------------------------------------------------------------------------------------------------------<br>
 
 
-Feel free to report issues or suggest ideas<br>
 <b>Author :</b> Sourabh Deokar	
 <b>EMail :</b> sourabhdeokar[AT]gmail[DOT]com
-
 
 <h6>	
  	\m/ W!LSP! \m/ 
