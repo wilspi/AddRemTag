@@ -14,15 +14,13 @@ $ make
 
 Homepage : <a href=https://code.google.com/p/addremtag >https://code.google.com/p/addremtag</a>
 
-<b>Author :</b> Sourabh Deokar	
-<b>EMail :</b> sourabhdeokar[AT]gmail[DOT]com
-
 
 -----------------------------------------------------------------------------------------------------------------------------------<br>
 
 
 Feel free to report issues or suggest ideas<br>
-Mail me @ <b><a href="mailto:sourabhdeokar@gmail.com?Subject=Comment%20AddRemTag@github">sourabhdeokar@gmail.com</a></b>
+<b>Author :</b> Sourabh Deokar	
+<b>EMail :</b> sourabhdeokar[AT]gmail[DOT]com
 
 
 <h6>	
