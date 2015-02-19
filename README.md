@@ -12,7 +12,7 @@ $ qmake -config release
 $ make
 </pre>
 
-Homepage : <a href=https://code.google.com/p/addremtag >https://code.google.com/p/addremtag</a>
+Homepage : <a href=https://code.google.com/p/addremtag >https://code.google.com/p/addremtag</a><br>
 Feel free to report issues or suggest ideas<br>
 
 
