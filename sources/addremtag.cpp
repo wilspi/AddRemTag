@@ -176,7 +176,7 @@ AddRemTag::AddRemTag(QWidget *parent) :
     extensionMoreOption->hide();
     extensionSettingOption->hide();
 
-    Qt::WindowFlags flags = this->windowFlags();
+    //Qt::WindowFlags flags = this->windowFlags();
 }
 
 void AddRemTag::textChanged(QString txt)
@@ -203,6 +203,29 @@ void AddRemTag::changeStatus(const QString & text)
     value->setText(text);
 }
 
+void AddRemTag::addToTagList(const QString & tag)
+{
+    if(tagName->findText(tag, Qt::MatchCaseSensitive)==-1)
+    {
+        //tagName->setInsertPolicy(QComboBox::InsertAlphabetically);
+        tagName->addItem(tag);
+        if(saveTags->isChecked())
+            saveTagsFile(tag);
+    }
+}
+
+void AddRemTag::saveTagsFile(QString tg)
+{
+    QFile fl (QDir::currentPath().append("/user/tgList.sett"));
+    if(fl.open(QFile::Append|QFile::Text))
+    {
+        QTextStream out(&fl);
+        out<< tg << "\n";
+        fl.flush();
+        fl.close();
+    }
+}
+
 void AddRemTag::search()
 {
     changeStatus("Searching...");  //TODO multithreading
@@ -210,13 +233,7 @@ void AddRemTag::search()
     QStringList tagsList;
 
     QString tg = tagName->currentText();
-    if(tagName->findText(tg, Qt::MatchCaseSensitive)==-1)
-    {
-        //tagName->setInsertPolicy(QComboBox::InsertAlphabetically);
-        tagName->addItem(tg);
-        if(saveTags->isChecked())
-            saveTagsFile(tg);
-    }
+    addToTagList(tg);
 
     QDir dir(dirAddress->text());
     if(dir.exists())
@@ -279,12 +296,7 @@ void AddRemTag::addTags()
     QStringList tagsList;
 
     QString tg = tagName->currentText();
-    if(tagName->findText(tg)==-1)
-    {
-        tagName->addItem(tg);
-        if(saveTags->isChecked())
-            saveTagsFile(tg);
-    }
+    addToTagList(tg);
 
     QDir dir(dirAddress->text());
     if(dir.exists())
@@ -303,28 +315,46 @@ void AddRemTag::addTags()
                     value->setText("■■■  FILES ADDED WITH "+tg+" TAG  ■■■");
             }
             value->setTextColor(QColor::fromRgb(0,0,0));
-            foreach(QFileInfo file , tagsList)
-            {                
-                if(file.isFile())
-                {
-                    value->append("◉ "+file.completeBaseName().simplified());
 
-                    int f= file.suffix().size()+1;
-                    if(addEnd->isChecked())
+            if(addEnd->isChecked())
+            {
+                foreach(QFileInfo file , tagsList)
+                {
+                    if(file.isFile())
+                    {
+                        value->append("◉ "+file.completeBaseName().simplified());
+
+                        int f= file.suffix().size()+1;
                         dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+file.fileName().remove(file.fileName().size()-f,f)+(tg)+"."+file.suffix()));
-                    else
-                        dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+(tg)+file.fileName()));
-                }
-                if(file.isDir())
-                {
-                    value->setTextColor(QColor::fromRgb(0,0,125));
-                    value->append("◎ "+file.completeBaseName().simplified()+"");
-                    value->setTextColor(QColor::fromRgb(0,0,0));
+                    }
+                    if(file.isDir())
+                    {
+                        value->setTextColor(QColor::fromRgb(0,0,125));
+                        value->append("◎ "+file.completeBaseName().simplified()+"");
+                        value->setTextColor(QColor::fromRgb(0,0,0));
 
-                    if(addEnd->isChecked())
                         dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+file.fileName()+(tg)));
-                    else
+                    }
+                }
+            }
+            else
+            {
+                foreach(QFileInfo file , tagsList)
+                {
+                    if(file.isFile())
+                    {
+                        value->append("◉ "+file.completeBaseName().simplified());
+
                         dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+(tg)+file.fileName()));
+                    }
+                    if(file.isDir())
+                    {
+                        value->setTextColor(QColor::fromRgb(0,0,125));
+                        value->append("◎ "+file.completeBaseName().simplified()+"");
+                        value->setTextColor(QColor::fromRgb(0,0,0));
+
+                        dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+(tg)+file.fileName()));
+                    }
                 }
             }
         }
@@ -356,12 +386,7 @@ void AddRemTag::removeTags()
     QStringList tagsList;
 
     QString tg = tagName->currentText();
-    if(tagName->findText(tg)==-1)
-    {
-        tagName->addItem(tg);
-        if(saveTags->isChecked())
-            saveTagsFile(tg);
-    }
+    addToTagList(tg);
 
     QDir dir(dirAddress->text());
     if(dir.exists())
@@ -664,18 +689,6 @@ void AddRemTag::dropDownText()
             if(fil=="6541")
                 saveTags->setChecked(true);
         }
-        fl.close();
-    }
-}
-
-void AddRemTag::saveTagsFile(QString tg)
-{
-    QFile fl (QDir::currentPath().append("/user/tgList.sett"));
-    if(fl.open(QFile::Append|QFile::Text))
-    {
-        QTextStream out(&fl);
-        out<< tg << "\n";
-        fl.flush();
         fl.close();
     }
 }

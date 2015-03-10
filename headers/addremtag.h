@@ -73,6 +73,7 @@ private :
     void dropDownText();
     void saveTagsFile(QString tg);
     void changeStatus(const QString & text);
+    void addToTagList(const QString & tag);
 
     Qt::WindowFlags flags;
 };
