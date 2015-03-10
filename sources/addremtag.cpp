@@ -313,7 +313,7 @@ void AddRemTag::addTags()
                     if(addEnd->isChecked())
                         dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+file.fileName().remove(file.fileName().size()-f,f)+(tg)+"."+file.suffix()));
                     else
-                        dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+(tg)+file.fileName().remove(file.fileName().size()-f,f)+"."+file.suffix()));
+                        dir.rename(file.absoluteFilePath(), (file.absolutePath()+"/"+(tg)+file.fileName()));
                 }
                 if(file.isDir())
                 {
@@ -426,7 +426,7 @@ QStringList AddRemTag::findTags(QDir dir,QString tg)
     QStringList tagsList;
 
     QFileInfoList ls =dir.entryInfoList();
-    for(int i=2; i< ls.size();i++)
+    for(int i=0; i< ls.size();i++)
     {
         QFileInfo file = ls.at(i);
         if((file.isFile())&&(!onlyFolder->isChecked()))
@@ -456,7 +456,7 @@ QStringList AddRemTag::allFiles(QDir dir,QString tg)
 
     //dir.setFilter(QDir::NoDotAndDotDot);
     QFileInfoList ls =dir.entryInfoList();
-    for(int i=2; i< ls.size();i++)
+    for(int i=0; i< ls.size();i++)
     {
         QFileInfo file = ls.at(i);
         if((file.isFile())&&(!onlyFolder->isChecked()))
