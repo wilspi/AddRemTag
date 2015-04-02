@@ -7,12 +7,12 @@ This is the source code of the application which is based on <a href=http://qt-p
 
 To build the source files, type the following commands in the terminal :
 <pre>
-$ make clean
-$ qmake -config release
-$ make
+make clean
+qmake -config release
+make
 </pre>
 
-Homepage : <a href=https://code.google.com/p/addremtag >https://code.google.com/p/addremtag</a><br>
+<!--Homepage : <a href=https://code.google.com/p/addremtag >https://code.google.com/p/addremtag</a><br>-->
 Feel free to report issues or suggest ideas<br>
 
 
